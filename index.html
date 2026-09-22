@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolarChange - Energía Limpia y Sostenible para el Perú Rural</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'solar-bg': '#FBF9F1',
+                        'solar-card': '#F5F1E6',
+                        'solar-card-dark': '#EBE5D8',
+                        'solar-green-main': '#4B7B47',
+                        'solar-green-dark': '#3E6B39',
+                        'solar-green-light': '#8EA885',
+                        'solar-yellow': '#F4B41A',
+                        'solar-yellow-light': '#FCEBB6',
+                        'solar-blue-panel': '#3B6082',
+                        'solar-text': '#2C3E2E',
+                    },
+                    fontFamily: {
+                        'title': ['Montserrat', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #FBF9F1;
+            color: #2C3E2E;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Animaciones para flujo de energía */
+        @keyframes flowPulse {
+            0% { stroke-dashoffset: 24; }
+            100% { stroke-dashoffset: 0; }
+        }
+        
+        .energy-flow-active {
+            stroke-dasharray: 8 6;
+            animation: flowPulse 0.7s linear infinite;
+        }
+
+        .energy-flow-reverse {
+            stroke-dasharray: 8 6;
+            animation: flowPulse 0.7s linear infinite reverse;
+        }
+
+        /* Brillo de Sol */
+        @keyframes sunGlow {
+            0%, 100% { filter: drop-shadow(0 0 12px rgba(244, 180, 26, 0.75)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 26px rgba(244, 180, 26, 0.95)); transform: scale(1.04); }
+        }
+        
+        .sun-active {
+            animation: sunGlow 3s ease-in-out infinite;
+        }
+
+        /* Brillo de LED */
+        @keyframes ledGlow {
+            0%, 100% { filter: drop-shadow(0 0 15px rgba(244, 180, 26, 0.85)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 28px rgba(244, 180, 26, 1)); transform: scale(1.05); }
+        }
+        
+        .led-active {
+            animation: ledGlow 1.6s ease-in-out infinite;
+        }
+
+        .sky-transition {
+            transition: background 1s ease, border-color 1s ease;
+        }
+
+        /* Acordeón y Cuestionario */
+        #educacion summary::-webkit-details-marker {
+            display: none;
+        }
+        #educacion .chevron-icon {
+            transition: transform 0.3s ease;
+        }
+        #educacion details[open] .chevron-icon {
+            transform: rotate(180deg);
+        }
+        #educacion .quiz-option:has(input:checked) {
+            background-color: rgba(244, 180, 26, 0.22);
+            border-color: #F4B41A;
+        }
+        
+        /* Sliders personalizados */
+        input[type=range] {
+            accent-color: #4B7B47;
+        }
+    </style>
+</head>
+<body class="bg-solar-bg text-solar-text min-h-screen flex flex-col justify-between">
+
+    <header class="sticky top-0 z-50 bg-solar-bg/95 backdrop-blur-md border-b border-solar-green-light/30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo SVG SolarChange Oficial -->
+            <a href="#" class="flex items-center gap-3 group">
+                <svg class="w-12 h-12 transition-transform duration-300 group-hover:scale-105 shrink-0" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="95" fill="#FBF9F1" stroke="#3E6B39" stroke-width="6"/>
+                    <path d="M40 70 C40 62 50 62 55 65 C60 58 75 60 78 68 C83 68 85 75 80 80 L40 80 Z" fill="#D3E0D0" opacity="0.8"/>
+                    <path d="M125 65 C125 58 135 58 140 61 C145 54 158 56 160 63 C165 63 167 70 162 75 L125 75 Z" fill="#D3E0D0" opacity="0.8"/>
+                    <circle cx="100" cy="70" r="22" fill="#F4B41A"/>
+                    <line x1="100" y1="38" x2="100" y2="28" stroke="#F4B41A" stroke-width="4" stroke-linecap="round"/>
+                    <line x1="123" y1="47" x2="130" y2="40" stroke="#F4B41A" stroke-width="4" stroke-linecap="round"/>
+                    <line x1="132" y1="70" x2="142" y2="70" stroke="#F4B41A" stroke-width="4" stroke-linecap="round"/>
+                    <line x1="123" y1="93" x2="130" y2="100" stroke="#F4B41A" stroke-width="4" stroke-linecap="round"/>
+                    <line x1="77" y1="47" x2="70" y2="40" stroke="#F4B41A" stroke-width="4" stroke-linecap="round"/>
+                    <line x1="68" y1="70" x2="58" y2="70" stroke="#F4B41A" stroke-width="4" stroke-linecap="round"/>
+                    <line x1="77" y1="93" x2="70" y2="100" stroke="#F4B41A" stroke-width="4" stroke-linecap="round"/>
+                    <polygon points="15,115 65,85 110,115" fill="#7FA878"/>
+                    <polygon points="75,115 130,70 185,115" fill="#A4836B"/>
+                    <polygon points="135,100 155,85 175,100" fill="#8B5E3C"/>
+                    <rect x="140" y="100" width="30" height="22" fill="#F5F1E6"/>
+                    <rect x="150" y="106" width="10" height="10" fill="#8B5E3C"/>
+                    <g transform="translate(72,80)">
+                        <polygon points="10,35 50,20 55,48 15,63" fill="#3B6082" stroke="#2C3E2E" stroke-width="1.5"/>
+                        <line x1="23" y1="30" x2="28" y2="58" stroke="#FBF9F1" stroke-width="1"/>
+                        <line x1="37" y1="25" x2="42" y2="53" stroke="#FBF9F1" stroke-width="1"/>
+                        <line x1="12" y1="44" x2="52" y2="29" stroke="#FBF9F1" stroke-width="1"/>
+                        <rect x="30" y="52" width="5" height="18" fill="#3E6B39"/>
+                    </g>
+                    <circle cx="45" cy="100" r="5" fill="#3E6B39"/>
+                    <path d="M37 112 C37 105 53 105 53 112" fill="#3E6B39"/>
+                    <circle cx="58" cy="103" r="4" fill="#3E6B39"/>
+                    <path d="M51 112 C51 106 65 106 65 112" fill="#3E6B39"/>
+                    <path d="M10 115 Q 100 135 190 115 L 190 135 Q 100 155 10 135 Z" fill="#4B7B47"/>
+                    <text x="100" y="148" font-family="Montserrat" font-weight="800" font-size="20" fill="#3E6B39" text-anchor="middle">SolarChange</text>
+                    <path d="M85 160 C80 150 95 150 95 160 C95 170 80 170 85 160 Z" fill="#4B7B47"/>
+                    <path d="M115 160 C120 150 105 150 105 160 C105 170 120 170 115 160 Z" fill="#3E6B39"/>
+                    <line x1="60" y1="160" x2="80" y2="160" stroke="#3E6B39" stroke-width="2"/>
+                    <line x1="120" y1="160" x2="140" y2="160" stroke="#3E6B39" stroke-width="2"/>
+                </svg>
+                <div class="flex flex-col">
+                    <span class="font-title font-extrabold text-2xl tracking-tight text-solar-green-dark">Solar<span class="text-solar-green-main">Change</span></span>
+                    <span class="text-xs text-solar-green-dark/70 font-medium tracking-wide">Energía Limpia Rural</span>
+                </div>
+            </a>
+
+            <!-- Navegación Escritorio -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+                <a href="#problematica" class="hover:text-solar-green-main transition-colors">Problemática</a>
+                <a href="#propuesta" class="hover:text-solar-green-main transition-colors">Propuesta</a>
+                <a href="#funcionamiento" class="hover:text-solar-green-main transition-colors">Funcionamiento</a>
+                <a href="#educacion" class="hover:text-solar-green-main transition-colors">Educación</a>
+                <a href="#simulador" class="px-5 py-2.5 rounded-full bg-solar-green-main text-white hover:bg-solar-green-dark transition-all shadow-md flex items-center gap-2 font-semibold">
+                    <i data-lucide="play-circle" class="w-4 h-4"></i> Simulador Vivo
+                </a>
+            </nav>
+
+            <a href="#simulador" class="md:hidden px-3.5 py-2 rounded-xl bg-solar-green-main text-white text-xs font-semibold shadow-sm">
+                Simulador
+            </a>
+        </div>
+    </header>
+
+    <section class="relative py-12 md:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-solar-yellow-light/70 border border-solar-yellow/40 text-solar-green-dark text-xs font-bold uppercase tracking-wider">
+                    <i data-lucide="sun" class="w-4 h-4 text-solar-yellow"></i> Innovación Social Sostenible
+                </div>
+                <h1 class="font-title text-4xl sm:text-5xl font-extrabold text-solar-green-dark leading-tight">
+                    Llevando luz constante a las comunidades del rural peruano
+                </h1>
+                <p class="text-lg text-solar-text/80 leading-relaxed font-body">
+                    SolarChange transforma la energía del sol en oportunidades, garantizando almacenamiento eficiente y electricidad accesible para miles de hogares alejados de la red eléctrica convencional.
+                </p>
+                <div class="pt-2 flex flex-wrap gap-4">
+                    <a href="#simulador" class="px-6 py-3.5 rounded-xl bg-solar-green-main hover:bg-solar-green-dark text-white font-semibold transition-all shadow-md hover:shadow-lg flex items-center gap-2">
+                        <i data-lucide="cpu" class="w-5 h-5"></i> Probar Simulador Día/Noche
+                    </a>
+                    <a href="#propuesta" class="px-6 py-3.5 rounded-xl bg-solar-card border border-solar-green-light/40 text-solar-green-dark hover:bg-solar-card-dark font-semibold transition-all">
+                        Conocer Más
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tarjeta Visual del Hero con Isotipo SolarChange -->
+            <div class="relative bg-solar-card rounded-3xl p-8 border border-solar-green-light/30 shadow-xl flex flex-col justify-center items-center text-center">
+                <div class="w-full max-w-sm bg-solar-bg rounded-2xl p-6 border border-solar-green-light/30 flex flex-col items-center gap-4 shadow-sm">
+                    <!-- Isotipo SolarChange -->
+                    <div class="p-3 bg-solar-card rounded-2xl border border-solar-green-light/30 shadow-inner">
+                        <svg class="w-24 h-24" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="100" r="95" fill="#FBF9F1" stroke="#3E6B39" stroke-width="6"/>
+                            <path d="M40 70 C40 62 50 62 55 65 C60 58 75 60 78 68 C83 68 85 75 80 80 L40 80 Z" fill="#D3E0D0" opacity="0.8"/>
+                            <path d="M125 65 C125 58 135 58 140 61 C145 54 158 56 160 63 C165 63 167 70 162 75 L125 75 Z" fill="#D3E0D0" opacity="0.8"/>
+                            <circle cx="100" cy="70" r="22" fill="#F4B41A"/>
+                            <line x1="100" y1="38" x2="100" y2="28" stroke="#F4B41A" stroke-width="4" stroke-linecap="round"/>
+                            <line x1="123" y1="47" x2="130" y2="40" stroke="#F4B41A" stroke-width="4" stroke-linecap="round"/>
+                            <line x1="132" y1="70" x2="142" y2="70" stroke="#F4B41A" stroke-width="4" stroke-linecap="round"/>
+                            <line x1="123" y1="93" x2="130" y2="100" stroke="#F4B41A" stroke-width="4" stroke-linecap="round"/>
+                            <polygon points="15,115 65,85 110,115" fill="#7FA878"/>
+                            <polygon points="75,115 130,70 185,115" fill="#A4836B"/>
+                            <polygon points="135,100 155,85 175,100" fill="#8B5E3C"/>
+                            <g transform="translate(72,80)">
+                                <polygon points="10,35 50,20 55,48 15,63" fill="#3B6082" stroke="#2C3E2E" stroke-width="1.5"/>
+                            </g>
+                            <path d="M10 115 Q 100 135 190 115 L 190 135 Q 100 155 10 135 Z" fill="#4B7B47"/>
+                            <text x="100" y="152" font-family="Montserrat" font-weight="800" font-size="18" fill="#3E6B39" text-anchor="middle">SolarChange</text>
+                        </svg>
+                    </div>
+
+                    <div>
+                        <h3 class="font-title font-bold text-xl text-solar-green-dark">Energía Solar Confiable</h3>
+                        <p class="text-sm text-solar-text/70 mt-1">Sistemas autosostenibles de bajo costo y alto impacto diseñados para la geografía peruana.</p>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 w-full pt-2">
+                        <div class="p-2 bg-solar-card rounded-lg text-xs font-medium">
+                            <span class="block text-solar-green-main font-bold text-sm">100%</span> Ecofriendly
+                        </div>
+                        <div class="p-2 bg-solar-card rounded-lg text-xs font-medium">
+                            <span class="block text-solar-blue-panel font-bold text-sm">24/7</span> Autonomía
+                        </div>
+                        <div class="p-2 bg-solar-card rounded-lg text-xs font-medium">
+                            <span class="block text-solar-yellow font-bold text-sm">Bajo</span> Costo
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="problematica" class="py-16 bg-solar-card/60 border-y border-solar-green-light/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            
+            <!-- Contexto Perú -->
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <h2 class="font-title text-3xl font-bold text-solar-green-dark">La Problemática en el Perú Rural</h2>
+                <p class="text-solar-text/80">
+                    En muchas zonas rurales y altoandinas del Perú, miles de familias carecen de acceso continuo a la red eléctrica. La falta de iluminación nocturna limita el desarrollo educativo de los niños, paraliza emprendimientos locales y fuerza el uso de mecheros o velas nocivas para la salud.
+                </p>
+            </div>
+
+            <!-- Grid de Impacto -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-solar-bg p-8 rounded-2xl border border-solar-green-light/30 shadow-sm space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-red-100 text-red-700 flex items-center justify-center font-bold">
+                        <i data-lucide="zap-off" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-title font-bold text-lg text-solar-green-dark">Aislamiento Energético</h3>
+                    <p class="text-sm text-solar-text/70">Comunidades distantes donde el tendido eléctrico convencional resulta inviable económicamente.</p>
+                </div>
+
+                <div class="bg-solar-bg p-8 rounded-2xl border border-solar-green-light/30 shadow-sm space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-solar-yellow-light text-solar-yellow flex items-center justify-center font-bold">
+                        <i data-lucide="flame" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-title font-bold text-lg text-solar-green-dark">Riesgos para la Salud</h3>
+                    <p class="text-sm text-solar-text/70">Uso de velas y lámparas de kerosene que emiten gases tóxicos en habitaciones cerradas.</p>
+                </div>
+
+                <div class="bg-solar-bg p-8 rounded-2xl border border-solar-green-light/30 shadow-sm space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-solar-blue-panel flex items-center justify-center font-bold">
+                        <i data-lucide="book-open" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-title font-bold text-lg text-solar-green-dark">Limitación de Oportunidades</h3>
+                    <p class="text-sm text-solar-text/70">Estudiantes sin luz adecuada para realizar sus tareas al caer la noche.</p>
+                </div>
+            </div>
+
+            <!-- Propuesta SolarChange con Branding -->
+            <div id="propuesta" class="bg-solar-green-dark text-white rounded-3xl p-8 sm:p-12 shadow-lg relative overflow-hidden">
+                <div class="relative z-10 grid md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <span class="text-solar-yellow font-bold tracking-wider text-xs uppercase bg-white/10 px-3 py-1 rounded-full">NUESTRA SOLUCIÓN</span>
+                        </div>
+                        <h2 class="font-title text-3xl font-extrabold">La Propuesta SolarChange</h2>
+                        <p class="text-solar-bg/90 leading-relaxed">
+                            Diseñamos una solución integral de captación y almacenamiento solar eficiente adaptada a las necesidades de las viviendas rurales. Proporcionamos luz LED constante, segura y sostenible que promueve la educación, la seguridad e impulsos socioeconómicos locales.
+                        </p>
+                    </div>
+
+                    <div class="space-y-3 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="check-circle-2" class="text-solar-yellow w-6 h-6 shrink-0"></i>
+                            <span>Captación optimizada incluso con alta nubosidad.</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="check-circle-2" class="text-solar-yellow w-6 h-6 shrink-0"></i>
+                            <span>Baterías duraderas con regulador inteligente.</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="check-circle-2" class="text-solar-yellow w-6 h-6 shrink-0"></i>
+                            <span>Luminaria LED de alta eficiencia y muy bajo consumo.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="funcionamiento" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+            <h2 class="font-title text-3xl font-bold text-solar-green-dark">Funcionamiento en 3 Pasos</h2>
+            <p class="text-solar-text/70">Un ciclo continuo de energía limpia para el bienestar de la comunidad.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 relative">
+            <!-- Paso 1 -->
+            <div class="bg-solar-card p-8 rounded-2xl border border-solar-green-light/30 relative flex flex-col items-center text-center group hover:border-solar-green-main transition-all">
+                <div class="w-16 h-16 rounded-full bg-solar-blue-panel text-white flex items-center justify-center font-title font-bold text-2xl shadow-md mb-6">
+                    1
+                </div>
+                <h3 class="font-title font-bold text-xl text-solar-green-dark mb-2">1. Capturar</h3>
+                <p class="text-sm text-solar-text/80">Los paneles fotovoltaicos inclinados captan la radiación solar incidente durante el día, transformándola en energía eléctrica de corriente continua.</p>
+            </div>
+
+            <!-- Paso 2 -->
+            <div class="bg-solar-card p-8 rounded-2xl border border-solar-green-light/30 relative flex flex-col items-center text-center group hover:border-solar-green-main transition-all">
+                <div class="w-16 h-16 rounded-full bg-solar-green-main text-white flex items-center justify-center font-title font-bold text-2xl shadow-md mb-6">
+                    2
+                </div>
+                <h3 class="font-title font-bold text-xl text-solar-green-dark mb-2">2. Almacenar</h3>
+                <p class="text-sm text-solar-text/80">La corriente recarga un banco de baterías recargables mediante un regulador de carga que preserva la vida útil del sistema.</p>
+            </div>
+
+            <!-- Paso 3 -->
+            <div class="bg-solar-card p-8 rounded-2xl border border-solar-green-light/30 relative flex flex-col items-center text-center group hover:border-solar-green-main transition-all">
+                <div class="w-16 h-16 rounded-full bg-solar-yellow text-white flex items-center justify-center font-title font-bold text-2xl shadow-md mb-6">
+                    3
+                </div>
+                <h3 class="font-title font-bold text-xl text-solar-green-dark mb-2">3. Utilizar</h3>
+                <p class="text-sm text-solar-text/80">Durante la noche, la energía acumulada alimenta automáticamente los focos LED de alta eficiencia instalados en la vivienda.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="simulador" class="py-16 bg-solar-card/40 border-t border-solar-green-light/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-solar-green-dark font-bold text-xs uppercase tracking-widest bg-solar-green-light/20 px-3.5 py-1.5 rounded-full inline-flex items-center gap-1.5">
+                    <i data-lucide="sliders" class="w-4 h-4 text-solar-green-main"></i> Simulación en Tiempo Real
+                </span>
+                <h2 class="font-title text-3xl sm:text-4xl font-extrabold text-solar-green-dark">Simulador Interactivo de Ciclo Solar</h2>
+                <p class="text-solar-text/80 text-sm sm:text-base">
+                    Alterna entre el día y la noche o modifica manualmente los valores de radiación y carga de la batería para ver cómo reacciona el sistema de energía rural.
+                </p>
+            </div>
+
+            <!-- Contenedor del Simulador -->
+            <div class="bg-solar-bg rounded-3xl border-2 border-solar-green-light/40 shadow-xl overflow-hidden">
+                
+                <!-- Barra Superior de Control / Toggle -->
+                <div class="p-6 bg-solar-card border-b border-solar-green-light/30 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <div id="mode-badge-icon" class="p-3 rounded-2xl bg-solar-yellow-light text-solar-yellow shadow-sm">
+                            <i data-lucide="sun" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-solar-text/60 font-semibold block uppercase tracking-wider">Modo de Operación</span>
+                            <span id="mode-badge-text" class="font-title font-bold text-lg text-solar-green-dark">MODO DÍA (Captando Energía Solar)</span>
+                        </div>
+                    </div>
+
+                    <!-- Botones de Acción -->
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button id="pause-btn" onclick="togglePauseSimulation()" class="px-4 py-2.5 rounded-xl bg-solar-bg border border-solar-green-light/40 text-solar-green-dark font-title font-semibold hover:bg-solar-card-dark transition-all text-sm flex items-center gap-2">
+                            <i data-lucide="pause" id="pause-icon" class="w-4 h-4"></i> <span id="pause-text">Pausar</span>
+                        </button>
+                        
+                        <button id="toggle-btn" onclick="toggleMode()" class="px-6 py-2.5 rounded-xl bg-solar-green-main hover:bg-solar-green-dark text-white font-title font-bold transition-all shadow-md flex items-center gap-2 active:scale-95 text-sm">
+                            <i data-lucide="moon-star" id="btn-icon" class="w-4 h-4"></i>
+                            <span id="btn-text">Cambiar a MODO NOCHE</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Canvas Gráfico Responsivo del Simulador -->
+                <div id="simulator-canvas" class="sky-transition relative p-6 sm:p-10 min-h-[460px] flex items-center justify-center bg-gradient-to-b from-[#E2F1E7] to-[#FBF9F1]">
+                    
+                    <div class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 items-center relative z-10">
+                        
+                        <!-- Columna 1: Sol / Panel Solar -->
+                        <div class="flex flex-col items-center gap-5">
+                            <!-- Elemento Sol / Luna -->
+                            <div id="celestial-body" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-solar-yellow flex items-center justify-center text-white shadow-lg sun-active transition-all duration-700">
+                                <i data-lucide="sun" id="celestial-icon" class="w-14 h-14 text-white"></i>
+                            </div>
+
+                            <!-- Panel Solar con Isotipo Integrado -->
+                            <div class="bg-solar-card p-4 rounded-2xl border border-solar-green-light/40 shadow-md text-center w-full max-w-[280px]">
+                                <div class="w-full h-24 bg-solar-blue-panel rounded-lg border-2 border-solar-green-dark/30 relative overflow-hidden flex flex-col justify-between p-2 mb-2 shadow-inner">
+                                    <div class="grid grid-cols-3 gap-1 h-full opacity-90">
+                                        <div class="border border-white/30 rounded bg-white/5"></div>
+                                        <div class="border border-white/30 rounded bg-white/5"></div>
+                                        <div class="border border-white/30 rounded bg-white/5"></div>
+                                        <div class="border border-white/30 rounded bg-white/5"></div>
+                                        <div class="border border-white/30 rounded bg-white/5"></div>
+                                        <div class="border border-white/30 rounded bg-white/5"></div>
+                                    </div>
+                                </div>
+                                <span class="font-title font-bold text-sm text-solar-green-dark">Panel Fotovoltaico 120W</span>
+                                <span id="panel-status" class="block text-xs text-solar-green-main font-semibold mt-0.5">Generando 120W</span>
+                            </div>
+                        </div>
+
+                        <!-- Columna 2: Conectores SVG Responsivos y Batería -->
+                        <div class="flex flex-col items-center gap-2">
+                            
+                            <!-- Flujo Panel -> Batería -->
+                            <div class="w-full h-10 relative flex items-center justify-center">
+                                <svg class="w-full h-8" viewBox="0 0 200 30" preserveAspectRatio="none">
+                                    <path id="flow-line-1" d="M 10 15 L 190 15" stroke="#3E6B39" stroke-width="5" stroke-dasharray="8 6" fill="none" class="energy-flow-active"/>
+                                    <polygon id="arrow-1" points="185,10 195,15 185,20" fill="#3E6B39" />
+                                </svg>
+                            </div>
+
+                            <!-- Batería Principal -->
+                            <div class="bg-solar-card border-2 border-solar-green-light/50 p-5 rounded-3xl shadow-lg w-full max-w-[260px] text-center space-y-3">
+                                <div class="flex items-center justify-between text-xs font-bold text-solar-green-dark">
+                                    <span class="flex items-center gap-1.5"><i data-lucide="battery" class="w-4 h-4 text-solar-green-main"></i> Batería Solar</span>
+                                    <span id="battery-pct-text" class="text-sm font-extrabold text-solar-green-dark">45%</span>
+                                </div>
+                                
+                                <!-- Barra de Progreso Batería -->
+                                <div class="w-full bg-gray-200 h-6 rounded-full overflow-hidden p-1 border border-gray-300 shadow-inner">
+                                    <div id="battery-bar" class="h-full bg-solar-green-main rounded-full transition-all duration-300" style="width: 45%;"></div>
+                                </div>
+
+                                <div class="flex items-center justify-center gap-1.5 text-xs font-medium text-solar-text/80" id="battery-state-label">
+                                    <i data-lucide="zap" class="w-3.5 h-3.5 text-solar-yellow"></i> Cargando energía solar...
+                                </div>
+                            </div>
+
+                            <!-- Flujo Batería -> Casa -->
+                            <div class="w-full h-10 relative flex items-center justify-center">
+                                <svg class="w-full h-8" viewBox="0 0 200 30" preserveAspectRatio="none">
+                                    <path id="flow-line-2" d="M 10 15 L 190 15" stroke="#8EA885" stroke-width="5" stroke-dasharray="8 6" stroke-opacity="0.25" fill="none"/>
+                                    <polygon id="arrow-2" points="185,10 195,15 185,20" fill="#8EA885" fill-opacity="0.3"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Columna 3: Casa Rural e Iluminación LED -->
+                        <div class="flex flex-col items-center gap-5">
+                            
+                            <div class="relative bg-solar-card p-5 rounded-3xl border border-solar-green-light/40 shadow-md w-full max-w-[280px] flex flex-col items-center text-center">
+                                
+                                <!-- Foco LED con Resplandor -->
+                                <div id="led-bulb" class="w-16 h-16 rounded-full bg-gray-200 text-gray-400 flex items-center justify-center mb-3 transition-all duration-500 shadow-inner">
+                                    <i data-lucide="lightbulb" class="w-9 h-9"></i>
+                                </div>
+
+                                <!-- Dibujo SVG Casa Rural -->
+                                <svg class="w-36 h-28" viewBox="0 0 120 90" fill="none">
+                                    <polygon points="10,45 60,10 110,45" fill="#8B5E3C"/>
+                                    <rect x="20" y="45" width="80" height="40" fill="#FBF9F1" stroke="#3E6B39" stroke-width="2.5" rx="1"/>
+                                    <!-- Puerta -->
+                                    <rect x="30" y="58" width="16" height="27" fill="#8B5E3C" rx="1"/>
+                                    <!-- Ventana Iluminada -->
+                                    <rect id="house-window" x="62" y="55" width="26" height="18" fill="#D3E0D0" stroke="#3E6B39" stroke-width="1.5" rx="2" class="transition-colors duration-500"/>
+                                    <line x1="75" y1="55" x2="75" y2="73" stroke="#3E6B39" stroke-width="1"/>
+                                    <line x1="62" y1="64" x2="88" y2="64" stroke="#3E6B39" stroke-width="1"/>
+                                </svg>
+
+                                <span class="font-title font-bold text-sm text-solar-green-dark mt-2">Vivienda Rural</span>
+                                <span id="led-status-text" class="text-xs text-solar-text/70 font-medium">Luz LED Apagada</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- CONTROLES MANUALES SLIDERS Y MÉTRICAS -->
+                <div class="p-6 bg-solar-card border-t border-solar-green-light/30 space-y-6">
+                    
+                    <!-- Sliders de Ajuste Fino -->
+                    <div class="grid md:grid-cols-3 gap-6 bg-solar-bg p-5 rounded-2xl border border-solar-green-light/30">
+                        
+                        <!-- Slider Radiación Solar -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center text-xs font-bold text-solar-green-dark">
+                                <span>Radiación Solar (Día)</span>
+                                <span id="radiation-val-text" class="text-solar-green-main">120 W</span>
+                            </div>
+                            <input type="range" id="radiation-slider" min="0" max="200" value="120" step="10" oninput="updateManualControls()" class="w-full cursor-pointer">
+                            <span class="text-[11px] text-solar-text/60 block">Ajusta para simular alta nubosidad o sol pleno.</span>
+                        </div>
+
+                        <!-- Slider Carga de Batería -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center text-xs font-bold text-solar-green-dark">
+                                <span>Forzar Nivel Batería</span>
+                                <span id="battery-slider-val-text" class="text-solar-blue-panel">45%</span>
+                            </div>
+                            <input type="range" id="battery-slider" min="0" max="100" value="45" step="5" oninput="updateManualControls()" class="w-full cursor-pointer">
+                            <span class="text-[11px] text-solar-text/60 block">Modifica manualmente la carga almacenada.</span>
+                        </div>
+
+                        <!-- Selector Velocidad de Simulación -->
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold text-solar-green-dark">Velocidad de Simulación</label>
+                            <div class="flex gap-2">
+                                <button onclick="setSpeed(1)" id="speed-1" class="flex-1 py-1.5 text-xs font-bold rounded-lg border border-solar-green-main bg-solar-green-main text-white">1x</button>
+                                <button onclick="setSpeed(2)" id="speed-2" class="flex-1 py-1.5 text-xs font-bold rounded-lg border border-solar-green-light/40 bg-solar-bg text-solar-green-dark hover:bg-solar-card-dark">2x</button>
+                                <button onclick="setSpeed(5)" id="speed-5" class="flex-1 py-1.5 text-xs font-bold rounded-lg border border-solar-green-light/40 bg-solar-bg text-solar-green-dark hover:bg-solar-card-dark">5x</button>
+                            </div>
+                            <span class="text-[11px] text-solar-text/60 block">Acelera el tiempo de carga/descarga.</span>
+                        </div>
+
+                    </div>
+
+                    <!-- Panel de Datos en Vivo del Simulador -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-solar-bg p-4 rounded-2xl border border-solar-green-light/20">
+                            <span class="text-xs text-solar-text/60 font-semibold block">Estado del Ciclo</span>
+                            <span id="data-state" class="font-title font-bold text-sm sm:text-base text-solar-green-dark">Día - Captación Solar</span>
+                        </div>
+
+                        <div class="bg-solar-bg p-4 rounded-2xl border border-solar-green-light/20">
+                            <span class="text-xs text-solar-text/60 font-semibold block">Producción Solar</span>
+                            <span id="data-pv" class="font-title font-bold text-sm sm:text-base text-solar-green-main">120 W / 18.2 V</span>
+                        </div>
+
+                        <div class="bg-solar-bg p-4 rounded-2xl border border-solar-green-light/20">
+                            <span class="text-xs text-solar-text/60 font-semibold block">Carga Batería</span>
+                            <span id="data-battery" class="font-title font-bold text-sm sm:text-base text-solar-blue-panel">45% (Almacenando)</span>
+                        </div>
+
+                        <div class="bg-solar-bg p-4 rounded-2xl border border-solar-green-light/20">
+                            <span class="text-xs text-solar-text/60 font-semibold block">Consumo Iluminación</span>
+                            <span id="data-led" class="font-title font-bold text-sm sm:text-base text-gray-500">0 W (Apagado)</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="educacion" class="py-16 bg-solar-card/40 border-t border-solar-green-light/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+            <!-- Encabezado -->
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-solar-green-main font-semibold tracking-wider text-xs uppercase">Aprende con SolarChange</span>
+                <h2 class="font-title text-3xl font-bold text-solar-green-dark">Educación Energética y Conciencia Social</h2>
+                <p class="text-solar-text/70">Comprender la energía solar es el primer paso para cerrar brechas en nuestra comunidad.</p>
+            </div>
+
+            <!-- Módulos educativos (acordeón) -->
+            <div class="space-y-4 max-w-4xl mx-auto">
+
+                <!-- Módulo A -->
+                <details class="group bg-solar-bg rounded-2xl border border-solar-green-light/30 shadow-sm overflow-hidden" open>
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 hover:bg-solar-card/50 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 shrink-0 rounded-xl bg-red-100 text-red-700 flex items-center justify-center font-title font-bold">A</div>
+                            <h3 class="font-title font-bold text-solar-green-dark text-lg">¿Qué significa estudiar sin electricidad?</h3>
+                        </div>
+                        <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-solar-green-main shrink-0"></i>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-sm text-solar-text/80 leading-relaxed space-y-3 border-t border-solar-green-light/20 mt-1 pt-4">
+                        <p>La falta o inestabilidad del acceso eléctrico puede generar barreras adicionales para el aprendizaje.</p>
+                        <ul class="grid sm:grid-cols-2 gap-2 text-solar-text/70">
+                            <li class="flex items-start gap-2"><i data-lucide="moon-star" class="w-4 h-4 mt-0.5 text-solar-blue-panel shrink-0"></i>Dificultad para estudiar de noche</li>
+                            <li class="flex items-start gap-2"><i data-lucide="lamp" class="w-4 h-4 mt-0.5 text-solar-blue-panel shrink-0"></i>Falta de iluminación adecuada</li>
+                            <li class="flex items-start gap-2"><i data-lucide="pencil" class="w-4 h-4 mt-0.5 text-solar-blue-panel shrink-0"></i>Dificultad para realizar tareas</li>
+                            <li class="flex items-start gap-2"><i data-lucide="laptop" class="w-4 h-4 mt-0.5 text-solar-blue-panel shrink-0"></i>Menor acceso a recursos digitales</li>
+                            <li class="flex items-start gap-2 sm:col-span-2"><i data-lucide="tablet" class="w-4 h-4 mt-0.5 text-solar-blue-panel shrink-0"></i>Limitaciones para utilizar computadoras y tabletas</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- Módulo B -->
+                <details class="group bg-solar-bg rounded-2xl border border-solar-green-light/30 shadow-sm overflow-hidden">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 hover:bg-solar-card/50 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 shrink-0 rounded-xl bg-solar-yellow-light text-solar-yellow flex items-center justify-center font-title font-bold">B</div>
+                            <h3 class="font-title font-bold text-solar-green-dark text-lg">La electricidad y la educación</h3>
+                        </div>
+                        <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-solar-green-main shrink-0"></i>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-sm text-solar-text/80 leading-relaxed space-y-3 border-t border-solar-green-light/20 mt-1 pt-4">
+                        <p>La electricidad permite que la educación cuente con más herramientas y recursos:</p>
+                        <ul class="grid sm:grid-cols-2 gap-2 text-solar-text/70">
+                            <li class="flex items-start gap-2"><i data-lucide="lightbulb" class="w-4 h-4 mt-0.5 text-solar-yellow shrink-0"></i>Iluminación</li>
+                            <li class="flex items-start gap-2"><i data-lucide="monitor" class="w-4 h-4 mt-0.5 text-solar-yellow shrink-0"></i>Uso de computadoras</li>
+                            <li class="flex items-start gap-2"><i data-lucide="battery-charging" class="w-4 h-4 mt-0.5 text-solar-yellow shrink-0"></i>Carga de dispositivos</li>
+                            <li class="flex items-start gap-2"><i data-lucide="wifi" class="w-4 h-4 mt-0.5 text-solar-yellow shrink-0"></i>Acceso a internet cuando existe conectividad</li>
+                            <li class="flex items-start gap-2"><i data-lucide="projector" class="w-4 h-4 mt-0.5 text-solar-yellow shrink-0"></i>Uso de proyectores</li>
+                            <li class="flex items-start gap-2"><i data-lucide="film" class="w-4 h-4 mt-0.5 text-solar-yellow shrink-0"></i>Herramientas audiovisuales</li>
+                            <li class="flex items-start gap-2"><i data-lucide="book-open" class="w-4 h-4 mt-0.5 text-solar-yellow shrink-0"></i>Recursos digitales</li>
+                            <li class="flex items-start gap-2"><i data-lucide="sparkles" class="w-4 h-4 mt-0.5 text-solar-yellow shrink-0"></i>Nuevas metodologías educativas</li>
+                        </ul>
+                        <p class="text-solar-text/70 italic">Esto se conecta directamente con las limitaciones pedagógicas de las escuelas sin electricidad.</p>
+                    </div>
+                </details>
+
+                <!-- Módulo C -->
+                <details class="group bg-solar-bg rounded-2xl border border-solar-green-light/30 shadow-sm overflow-hidden">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 hover:bg-solar-card/50 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 shrink-0 rounded-xl bg-blue-100 text-solar-blue-panel flex items-center justify-center font-title font-bold">C</div>
+                            <h3 class="font-title font-bold text-solar-green-dark text-lg">La brecha digital</h3>
+                        </div>
+                        <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-solar-green-main shrink-0"></i>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-sm text-solar-text/80 leading-relaxed space-y-4 border-t border-solar-green-light/20 mt-1 pt-4">
+                        <div class="flex flex-wrap items-center justify-center gap-2 bg-solar-card rounded-xl p-4 text-center font-title font-semibold text-solar-green-dark text-sm">
+                            <span>Electricidad</span><i data-lucide="arrow-right" class="w-4 h-4 text-solar-green-main"></i>
+                            <span>Tecnología</span><i data-lucide="arrow-right" class="w-4 h-4 text-solar-green-main"></i>
+                            <span>Conectividad</span><i data-lucide="arrow-right" class="w-4 h-4 text-solar-green-main"></i>
+                            <span>Acceso a información</span><i data-lucide="arrow-right" class="w-4 h-4 text-solar-green-main"></i>
+                            <span>Oportunidades</span>
+                        </div>
+                        <p>La brecha no es únicamente tecnológica. También puede afectar la <strong>educación</strong>, la <strong>comunicación</strong> y las <strong>oportunidades</strong> de las personas.</p>
+                    </div>
+                </details>
+
+                <!-- Módulo D -->
+                <details class="group bg-solar-bg rounded-2xl border border-solar-green-light/30 shadow-sm overflow-hidden">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 hover:bg-solar-card/50 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 shrink-0 rounded-xl bg-green-100 text-solar-green-main flex items-center justify-center font-title font-bold">D</div>
+                            <h3 class="font-title font-bold text-solar-green-dark text-lg">¿Qué está haciendo el Estado?</h3>
+                        </div>
+                        <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-solar-green-main shrink-0"></i>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-sm text-solar-text/80 leading-relaxed space-y-3 border-t border-solar-green-light/20 mt-1 pt-4">
+                        <p>El Estado peruano cuenta con dos marcos orientados a ampliar el acceso eléctrico en zonas rurales: la <strong>Ley General de Electrificación Rural (Ley N.º 28749)</strong> y el <strong>Plan Nacional de Electrificación Rural (PNER)</strong>.</p>
+                        <div class="bg-solar-green-dark/5 border border-solar-green-light/30 rounded-xl p-4 text-solar-green-dark font-medium">
+                            SolarChange no busca sustituir estos esfuerzos. Nuestra propuesta busca mostrar una alternativa complementaria y generar conciencia sobre la importancia de que las comunidades puedan acceder a soluciones energéticas sostenibles.
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Módulo E -->
+                <details class="group bg-solar-bg rounded-2xl border border-solar-green-light/30 shadow-sm overflow-hidden">
+                    <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 hover:bg-solar-card/50 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 shrink-0 rounded-xl bg-solar-yellow-light text-solar-yellow flex items-center justify-center font-title font-bold">E</div>
+                            <h3 class="font-title font-bold text-solar-green-dark text-lg">¿Qué podemos hacer nosotros?</h3>
+                        </div>
+                        <i data-lucide="chevron-down" class="chevron-icon w-5 h-5 text-solar-green-main shrink-0"></i>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-sm text-solar-text/80 leading-relaxed border-t border-solar-green-light/20 mt-1 pt-4">
+                        <ul class="grid sm:grid-cols-2 gap-2 text-solar-text/70">
+                            <li class="flex items-start gap-2"><i data-lucide="search" class="w-4 h-4 mt-0.5 text-solar-green-main shrink-0"></i>Informarnos</li>
+                            <li class="flex items-start gap-2"><i data-lucide="share-2" class="w-4 h-4 mt-0.5 text-solar-green-main shrink-0"></i>Compartir información</li>
+                            <li class="flex items-start gap-2"><i data-lucide="leaf" class="w-4 h-4 mt-0.5 text-solar-green-main shrink-0"></i>Promover el uso responsable de la energía</li>
+                            <li class="flex items-start gap-2"><i data-lucide="sun" class="w-4 h-4 mt-0.5 text-solar-green-main shrink-0"></i>Conocer las energías renovables</li>
+                            <li class="flex items-start gap-2"><i data-lucide="hand-heart" class="w-4 h-4 mt-0.5 text-solar-green-main shrink-0"></i>Apoyar iniciativas sostenibles</li>
+                            <li class="flex items-start gap-2"><i data-lucide="scale" class="w-4 h-4 mt-0.5 text-solar-green-main shrink-0"></i>Comprender las desigualdades de acceso</li>
+                            <li class="flex items-start gap-2 sm:col-span-2"><i data-lucide="megaphone" class="w-4 h-4 mt-0.5 text-solar-green-main shrink-0"></i>Utilizar la tecnología para comunicar problemas y soluciones</li>
+                        </ul>
+                    </div>
+                </details>
+
+            </div>
+
+            <div class="max-w-3xl mx-auto bg-solar-green-dark text-white rounded-3xl p-6 sm:p-10 shadow-lg">
+                <div class="text-center space-y-2 mb-8">
+                    <span class="text-solar-yellow font-semibold tracking-wider text-xs uppercase">Pon a prueba lo aprendido</span>
+                    <h3 class="font-title text-2xl font-extrabold">Cuestionario de Educación Energética</h3>
+                    <p class="text-solar-bg/80 text-sm">Responde las 5 preguntas y descubre cuánto aprendiste.</p>
+                </div>
+
+                <div id="quiz-questions" class="space-y-5">
+
+                    <div class="quiz-question bg-white/10 rounded-2xl p-5 border border-white/10" data-correct="b">
+                        <p class="font-semibold mb-3">1. ¿Qué componente convierte la luz del sol en electricidad?</p>
+                        <div class="space-y-2 text-sm">
+                            <label class="quiz-option flex items-center gap-2 cursor-pointer border border-white/10 rounded-lg px-3 py-2 transition-colors"><input type="radio" name="q1" value="a" class="accent-solar-yellow"> Batería de litio</label>
+                            <label class="quiz-option flex items-center gap-2 cursor-pointer border border-white/10 rounded-lg px-3 py-2 transition-colors"><input type="radio" name="q1" value="b" class="accent-solar-yellow"> Panel solar</label>
+                            <label class="quiz-option flex items-center gap-2 cursor-pointer border border-white/10 rounded-lg px-3 py-2 transition-colors"><input type="radio" name="q1" value="c" class="accent-solar-yellow"> Foco LED</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question bg-white/10 rounded-2xl p-5 border border-white/10" data-correct="a">
+                        <p class="font-semibold mb-3">2. ¿Dónde se almacena la energía captada durante el día?</p>
+                        <div class="space-y-2 text-sm">
+                            <label class="quiz-option flex items-center gap-2 cursor-pointer border border-white/10 rounded-lg px-3 py-2 transition-colors"><input type="radio" name="q2" value="a" class="accent-solar-yellow"> En la batería</label>
+                            <label class="quiz-option flex items-center gap-2 cursor-pointer border border-white/10 rounded-lg px-3 py-2 transition-colors"><input type="radio" name="q2" value="b" class="accent-solar-yellow"> En el panel solar</label>
+                            <label class="quiz-option flex items-center gap-2 cursor-pointer border border-white/10 rounded-lg px-3 py-2 transition-colors"><input type="radio" name="q2" value="c" class="accent-solar-yellow"> En el switch</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question bg-white/10 rounded-2xl p-5 border border-white/10" data-correct="b">
+                        <p class="font-semibold mb-3">3. Según el Congreso de la República, ¿qué porcentaje aproximado de la población rural de regiones como Loreto, Amazonas, Cajamarca y Huánuco no cuenta con electricidad?</p>
+                        <div class="space-y-2 text-sm">
+                            <label class="quiz-option flex items-center gap-2 cursor-pointer border border-white/10 rounded-lg px-3 py-2 transition-colors"><input type="radio" name="q3" value="a" class="accent-solar-yellow"> 20%</label>
+                            <label class="quiz-option flex items-center gap-2 cursor-pointer border border-white/10 rounded-lg px-3 py-2 transition-colors"><input type="radio" name="q3" value="b" class="accent-solar-yellow"> 60%</label>
+                            <label class="quiz-option flex items-center gap-2 cursor-pointer border border-white/10 rounded-lg px-3 py-2 transition-colors"><input type="radio" name="q3" value="c" class="accent-solar-yellow"> 90%</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question bg-white/10 rounded-2xl p-5 border border-white/10" data-correct="a">
+                        <p class="font-semibold mb-3">4. ¿Qué ley busca ampliar el acceso a la electricidad en zonas rurales del Perú?</p>
+                        <div class="space-y-2 text-sm">
+                            <label class="quiz-option flex items-center gap-2 cursor-pointer border border-white/10 rounded-lg px-3 py-2 transition-colors"><input type="radio" name="q4" value="a" class="accent-solar-yellow"> Ley General de Electrificación Rural</label>
+                            <label class="quiz-option flex items-center gap-2 cursor-pointer border border-white/10 rounded-lg px-3 py-2 transition-colors"><input type="radio" name="q4" value="b" class="accent-solar-yellow"> Ley de Protección al Consumidor</label>
+                            <label class="quiz-option flex items-center gap-2 cursor-pointer border border-white/10 rounded-lg px-3 py-2 transition-colors"><input type="radio" name="q4" value="c" class="accent-solar-yellow"> Ley General de Educación</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question bg-white/10 rounded-2xl p-5 border border-white/10" data-correct="a">
+                        <p class="font-semibold mb-3">5. ¿Cuál de estas acciones podemos hacer nosotros para generar conciencia sobre el acceso a la energía?</p>
+                        <div class="space-y-2 text-sm">
+                            <label class="quiz-option flex items-center gap-2 cursor-pointer border border-white/10 rounded-lg px-3 py-2 transition-colors"><input type="radio" name="q5" value="a" class="accent-solar-yellow"> Informarnos y compartir lo aprendido</label>
+                            <label class="quiz-option flex items-center gap-2 cursor-pointer border border-white/10 rounded-lg px-3 py-2 transition-colors"><input type="radio" name="q5" value="b" class="accent-solar-yellow"> Ignorar el problema porque no nos afecta</label>
+                            <label class="quiz-option flex items-center gap-2 cursor-pointer border border-white/10 rounded-lg px-3 py-2 transition-colors"><input type="radio" name="q5" value="c" class="accent-solar-yellow"> Esperar a que otros lo resuelvan</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="flex flex-col items-center gap-4 mt-8">
+                    <button id="quiz-submit-btn" onclick="checkQuizAnswers()" class="px-6 py-3 rounded-xl bg-solar-yellow text-solar-green-dark font-title font-bold hover:bg-solar-yellow-light transition-all shadow-md">
+                        Verificar respuestas
+                    </button>
+                    <div id="quiz-result" class="hidden text-center font-title font-bold text-lg"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-solar-card border-t border-solar-green-light/30 py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+                
+                <!-- Logo Footer Completo SVG -->
+                <div class="flex items-center gap-4">
+                    <svg class="w-16 h-16 shrink-0" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="95" fill="#FBF9F1" stroke="#3E6B39" stroke-width="6"/>
+                        <circle cx="100" cy="70" r="22" fill="#F4B41A"/>
+                        <polygon points="15,115 65,85 110,115" fill="#7FA878"/>
+                        <polygon points="75,115 130,70 185,115" fill="#A4836B"/>
+                        <polygon points="135,100 155,85 175,100" fill="#8B5E3C"/>
+                        <g transform="translate(72,80)">
+                            <polygon points="10,35 50,20 55,48 15,63" fill="#3B6082" stroke="#2C3E2E" stroke-width="1.5"/>
+                        </g>
+                        <path d="M10 115 Q 100 135 190 115 L 190 135 Q 100 155 10 135 Z" fill="#4B7B47"/>
+                        <text x="100" y="150" font-family="Montserrat" font-weight="800" font-size="19" fill="#3E6B39" text-anchor="middle">SolarChange</text>
+                    </svg>
+                    <div class="flex flex-col">
+                        <span class="font-title font-extrabold text-2xl text-solar-green-dark">Solar<span class="text-solar-green-main">Change</span></span>
+                        <span class="text-xs text-solar-text/70 font-medium">Proyecto Social de Energía Limpia Rural para el Perú</span>
+                    </div>
+                </div>
+
+                <!-- Enlaces Rápidos -->
+                <div class="flex flex-wrap justify-center gap-6 text-sm font-semibold text-solar-green-dark">
+                    <a href="#problematica" class="hover:text-solar-green-main">Problemática</a>
+                    <a href="#propuesta" class="hover:text-solar-green-main">Propuesta</a>
+                    <a href="#simulador" class="hover:text-solar-green-main">Simulador Interactive</a>
+                    <a href="#educacion" class="hover:text-solar-green-main">Educación</a>
+                </div>
+            </div>
+
+            <div class="border-t border-solar-green-light/20 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-solar-text/60 gap-4">
+                <p>&copy; 2026 SolarChange Peru - Todos los derechos reservados.</p>
+                <p>Desarrollado para impulsar el acceso universal a la energía limpia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar Lucide Icons
+        lucide.createIcons();
+
+        // Estado del Simulador
+        let isDayMode = true;
+        let isPaused = false;
+        let simulationSpeed = 1; // Multiplicador de velocidad (1x, 2x, 5x)
+        let batteryLevel = 45; // Porcentaje de 0 a 100
+        let solarRadiation = 120; // Watts de radiación solar
+        let timerInterval = null;
+
+        // Referencias a Elementos DOM
+        const toggleBtn = document.getElementById('toggle-btn');
+        const btnIcon = document.getElementById('btn-icon');
+        const btnText = document.getElementById('btn-text');
+        
+        const pauseBtn = document.getElementById('pause-btn');
+        const pauseIcon = document.getElementById('pause-icon');
+        const pauseText = document.getElementById('pause-text');
+
+        const modeBadgeIcon = document.getElementById('mode-badge-icon');
+        const modeBadgeText = document.getElementById('mode-badge-text');
+        const simulatorCanvas = document.getElementById('simulator-canvas');
+        
+        const celestialBody = document.getElementById('celestial-body');
+        const celestialIcon = document.getElementById('celestial-icon');
+        
+        const panelStatus = document.getElementById('panel-status');
+        const batteryPctText = document.getElementById('battery-pct-text');
+        const batteryBar = document.getElementById('battery-bar');
+        const batteryStateLabel = document.getElementById('battery-state-label');
+        
+        const ledBulb = document.getElementById('led-bulb');
+        const houseWindow = document.getElementById('house-window');
+        const ledStatusText = document.getElementById('led-status-text');
+
+        const flowLine1 = document.getElementById('flow-line-1');
+        const arrow1 = document.getElementById('arrow-1');
+        const flowLine2 = document.getElementById('flow-line-2');
+        const arrow2 = document.getElementById('arrow-2');
+
+        const radiationSlider = document.getElementById('radiation-slider');
+        const radiationValText = document.getElementById('radiation-val-text');
+        const batterySlider = document.getElementById('battery-slider');
+        const batterySliderValText = document.getElementById('battery-slider-val-text');
+
+        // Métricas
+        const dataState = document.getElementById('data-state');
+        const dataPv = document.getElementById('data-pv');
+        const dataBattery = document.getElementById('data-battery');
+        const dataLed = document.getElementById('data-led');
+
+        // Cuestionario Interactivo
+        function checkQuizAnswers() {
+            const questions = document.querySelectorAll('#quiz-questions .quiz-question');
+            let score = 0;
+
+            questions.forEach((q) => {
+                const correct = q.getAttribute('data-correct');
+                const selected = q.querySelector('input[type="radio"]:checked');
+
+                let feedback = q.querySelector('.quiz-feedback');
+                if (!feedback) {
+                    feedback = document.createElement('p');
+                    feedback.className = 'quiz-feedback text-xs font-semibold mt-3';
+                    q.appendChild(feedback);
+                }
+
+                if (!selected) {
+                    feedback.textContent = 'No respondiste esta pregunta.';
+                    feedback.className = 'quiz-feedback text-xs font-semibold mt-3 text-solar-yellow';
+                    return;
+                }
+
+                if (selected.value === correct) {
+                    score++;
+                    feedback.textContent = '✓ ¡Correcto!';
+                    feedback.className = 'quiz-feedback text-xs font-semibold mt-3 text-green-300';
+                } else {
+                    feedback.textContent = '✗ Respuesta incorrecta. Revisa el módulo educativo.';
+                    feedback.className = 'quiz-feedback text-xs font-semibold mt-3 text-red-300';
+                }
+            });
+
+            const resultEl = document.getElementById('quiz-result');
+            resultEl.classList.remove('hidden');
+            resultEl.textContent = `Obtuviste ${score} de ${questions.length} respuestas correctas.`;
+            resultEl.className = 'text-center font-title font-bold text-lg ' + (score === questions.length ? 'text-solar-yellow' : 'text-white');
+        }
+
+        // Cambiar entre Modo Día y Noche
+        function toggleMode() {
+            isDayMode = !isDayMode;
+            updateSimulationUI();
+        }
+
+        // Pausar / Reanudar Simulación
+        function togglePauseSimulation() {
+            isPaused = !isPaused;
+            if (isPaused) {
+                pauseText.innerText = "Reanudar";
+                pauseIcon.setAttribute('data-lucide', 'play');
+            } else {
+                pauseText.innerText = "Pausar";
+                pauseIcon.setAttribute('data-lucide', 'pause');
+            }
+            lucide.createIcons();
+        }
+
+        // Ajustar Velocidad
+        function setSpeed(spd) {
+            simulationSpeed = spd;
+            [1, 2, 5].forEach(s => {
+                const btn = document.getElementById(`speed-${s}`);
+                if (s === spd) {
+                    btn.className = "flex-1 py-1.5 text-xs font-bold rounded-lg border border-solar-green-main bg-solar-green-main text-white";
+                } else {
+                    btn.className = "flex-1 py-1.5 text-xs font-bold rounded-lg border border-solar-green-light/40 bg-solar-bg text-solar-green-dark hover:bg-solar-card-dark";
+                }
+            });
+            startSimulationLoop();
+        }
+
+        // Actualizar valores desde los sliders
+        function updateManualControls() {
+            solarRadiation = parseInt(radiationSlider.value);
+            radiationValText.innerText = `${solarRadiation} W`;
+
+            batteryLevel = parseInt(batterySlider.value);
+            batterySliderValText.innerText = `${batteryLevel}%`;
+
+            updateSimulationUI();
+        }
+
+        // Actualizar Interfaz del Simulador sin parpadeos
+        function updateSimulationUI() {
+            if (isDayMode) {
+                // --- MODO DÍA ---
+                btnText.innerText = "Cambiar a MODO NOCHE";
+                btnIcon.setAttribute('data-lucide', 'moon-star');
+                
+                modeBadgeText.innerText = "MODO DÍA (Captando Energía Solar)";
+                modeBadgeIcon.className = "p-3 rounded-2xl bg-solar-yellow-light text-solar-yellow shadow-sm";
+                modeBadgeIcon.innerHTML = `<i data-lucide="sun" class="w-6 h-6"></i>`;
+
+                // Fondo Canvas
+                simulatorCanvas.className = "sky-transition relative p-6 sm:p-10 min-h-[460px] flex items-center justify-center bg-gradient-to-b from-[#E2F1E7] to-[#FBF9F1]";
+
+                // Sol
+                celestialBody.className = "w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-solar-yellow flex items-center justify-center text-white shadow-lg sun-active transition-all duration-700";
+                celestialIcon.setAttribute('data-lucide', 'sun');
+
+                // Panel Status
+                const pvVoltage = (solarRadiation * 0.15).toFixed(1);
+                panelStatus.innerText = solarRadiation > 0 ? `Generando ${solarRadiation}W` : "Sin Radiación (Nublado)";
+                panelStatus.className = solarRadiation > 0 ? "block text-xs text-solar-green-main font-semibold mt-0.5" : "block text-xs text-amber-600 font-semibold mt-0.5";
+
+                // LED Apagado
+                ledBulb.className = "w-16 h-16 rounded-full bg-gray-200 text-gray-400 flex items-center justify-center mb-3 transition-all duration-500 shadow-inner";
+                houseWindow.setAttribute('fill', '#D3E0D0');
+                ledStatusText.innerText = "Luz LED Apagada";
+
+                // SVG Flujo de energía 1 (Panel -> Batería)
+                if (solarRadiation > 0) {
+                    flowLine1.setAttribute('stroke', '#3E6B39');
+                    flowLine1.setAttribute('stroke-opacity', '1');
+                    flowLine1.className.baseVal = 'energy-flow-active';
+                    arrow1.setAttribute('fill', '#3E6B39');
+                    arrow1.setAttribute('fill-opacity', '1');
+                } else {
+                    flowLine1.setAttribute('stroke', '#8EA885');
+                    flowLine1.setAttribute('stroke-opacity', '0.25');
+                    flowLine1.className.baseVal = '';
+                    arrow1.setAttribute('fill-opacity', '0.2');
+                }
+
+                // SVG Flujo 2 (Batería -> Casa Inactivo)
+                flowLine2.setAttribute('stroke', '#8EA885');
+                flowLine2.setAttribute('stroke-opacity', '0.25');
+                flowLine2.className.baseVal = '';
+                arrow2.setAttribute('fill-opacity', '0.2');
+
+                // Datos
+                dataState.innerText = "Día - Captación Solar";
+                dataPv.innerText = `${solarRadiation} W / ${pvVoltage} V`;
+                dataPv.className = "font-title font-bold text-sm sm:text-base text-solar-green-main";
+                dataLed.innerText = "0 W (Apagado)";
+                dataLed.className = "font-title font-bold text-sm sm:text-base text-gray-500";
+
+            } else {
+                // --- MODO NOCHE ---
+                btnText.innerText = "Cambiar a MODO DÍA";
+                btnIcon.setAttribute('data-lucide', 'sun');
+
+                modeBadgeText.innerText = "MODO NOCHE (Suministro de Luz LED)";
+                modeBadgeIcon.className = "p-3 rounded-2xl bg-indigo-100 text-indigo-800 shadow-sm";
+                modeBadgeIcon.innerHTML = `<i data-lucide="moon-star" class="w-6 h-6"></i>`;
+
+                // Fondo Canvas Noche / Crepúsculo
+                simulatorCanvas.className = "sky-transition relative p-6 sm:p-10 min-h-[460px] flex items-center justify-center bg-gradient-to-b from-[#C4D5E3] to-[#E5DFC8]";
+
+                // Luna
+                celestialBody.className = "w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-indigo-900 flex items-center justify-center text-yellow-200 shadow-md transition-all duration-700";
+                celestialIcon.setAttribute('data-lucide', 'moon');
+
+                // Panel Inactivo
+                panelStatus.innerText = "Inactivo (Sin Sol)";
+                panelStatus.className = "block text-xs text-gray-400 font-semibold mt-0.5";
+
+                // Ver si hay energía en la batería para encender el LED
+                if (batteryLevel > 0) {
+                    ledBulb.className = "w-16 h-16 rounded-full bg-solar-yellow text-white flex items-center justify-center mb-3 led-active transition-all duration-500 shadow-lg";
+                    houseWindow.setAttribute('fill', '#F4B41A');
+                    ledStatusText.innerText = "Luz LED Encendida (Cálida)";
+
+                    // Flujo 2 Activo
+                    flowLine2.setAttribute('stroke', '#F4B41A');
+                    flowLine2.setAttribute('stroke-opacity', '1');
+                    flowLine2.className.baseVal = 'energy-flow-active';
+                    arrow2.setAttribute('fill', '#F4B41A');
+                    arrow2.setAttribute('fill-opacity', '1');
+
+                    dataLed.innerText = "12 W (Encendido)";
+                    dataLed.className = "font-title font-bold text-sm sm:text-base text-solar-yellow";
+                } else {
+                    // Batería agotada
+                    ledBulb.className = "w-16 h-16 rounded-full bg-red-100 text-red-400 flex items-center justify-center mb-3 transition-all duration-500";
+                    houseWindow.setAttribute('fill', '#D3E0D0');
+                    ledStatusText.innerText = "Batería Agotada (Sin Luz)";
+
+                    flowLine2.setAttribute('stroke', '#8EA885');
+                    flowLine2.setAttribute('stroke-opacity', '0.25');
+                    flowLine2.className.baseVal = '';
+                    arrow2.setAttribute('fill-opacity', '0.2');
+
+                    dataLed.innerText = "0 W (Agotado)";
+                    dataLed.className = "font-title font-bold text-sm sm:text-base text-red-500";
+                }
+
+                // Flujo 1 Inactivo
+                flowLine1.setAttribute('stroke', '#8EA885');
+                flowLine1.setAttribute('stroke-opacity', '0.25');
+                flowLine1.className.baseVal = '';
+                arrow1.setAttribute('fill-opacity', '0.2');
+
+                // Datos
+                dataState.innerText = "Noche - Consumo Nocturno";
+                dataPv.innerText = "0 W / 0 V";
+                dataPv.className = "font-title font-bold text-sm sm:text-base text-gray-400";
+            }
+
+            // Actualizar etiquetas de la batería
+            batteryPctText.innerText = `${batteryLevel}%`;
+            batteryBar.style.width = `${batteryLevel}%`;
+            batterySlider.value = batteryLevel;
+            batterySliderValText.innerText = `${batteryLevel}%`;
+
+            if (batteryLevel < 20) {
+                batteryBar.className = "h-full bg-amber-500 rounded-full transition-all duration-300";
+            } else {
+                batteryBar.className = "h-full bg-solar-green-main rounded-full transition-all duration-300";
+            }
+
+            lucide.createIcons();
+        }
+
+        // Bucle de Simulación de Carga y Descarga
+        function startSimulationLoop() {
+            if (timerInterval) clearInterval(timerInterval);
+
+            timerInterval = setInterval(() => {
+                if (isPaused) return;
+
+                if (isDayMode) {
+                    // Carga con base en radiación solar
+                    if (solarRadiation > 0 && batteryLevel < 100) {
+                        const step = Math.ceil((solarRadiation / 100) * simulationSpeed);
+                        batteryLevel = Math.min(100, batteryLevel + step);
+                        batteryStateLabel.innerHTML = `<i data-lucide="zap" class="w-3.5 h-3.5 text-solar-yellow"></i> Cargando a +${step}%...`;
+                        dataBattery.innerText = `${batteryLevel}% (Cargando)`;
+                    } else if (batteryLevel >= 100) {
+                        batteryStateLabel.innerHTML = `<i data-lucide="check-circle" class="w-3.5 h-3.5 text-solar-green-main"></i> Batería Completa (100%)`;
+                        dataBattery.innerText = `100% (Carga Completa)`;
+                    } else {
+                        batteryStateLabel.innerHTML = `<i data-lucide="cloud" class="w-3.5 h-3.5 text-gray-500"></i> Sin radiación suficiente`;
+                        dataBattery.innerText = `${batteryLevel}% (En Espera)`;
+                    }
+                } else {
+                    // Descarga nocturna
+                    if (batteryLevel > 0) {
+                        const step = Math.ceil(1 * simulationSpeed);
+                        batteryLevel = Math.max(0, batteryLevel - step);
+                        batteryStateLabel.innerHTML = `<i data-lucide="power" class="w-3.5 h-3.5 text-solar-yellow"></i> Suministrando luz LED...`;
+                        dataBattery.innerText = `${batteryLevel}% (Uso Nocturno)`;
+                    } else {
+                        batteryStateLabel.innerHTML = `<i data-lucide="alert-triangle" class="w-3.5 h-3.5 text-red-500"></i> Batería descargada`;
+                        dataBattery.innerText = `0% (Agotada)`;
+                    }
+                }
+
+                // Renderizar cambios visuales
+                batteryPctText.innerText = `${batteryLevel}%`;
+                batteryBar.style.width = `${batteryLevel}%`;
+                batterySlider.value = batteryLevel;
+                batterySliderValText.innerText = `${batteryLevel}%`;
+
+                // Si se agotó o cargó completo, actualizar estado de focos/flujo
+                updateSimulationUI();
+
+            }, 1000);
+        }
+
+        // Inicialización al cargar la ventana
+        window.onload = function() {
+            updateSimulationUI();
+            startSimulationLoop();
+        };
+    </script>
+</body>
+</html>
